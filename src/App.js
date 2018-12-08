@@ -23,10 +23,14 @@ class App extends Component {
   onClick = value => {
     if (
       this.state.screenValue === 0 ||
-      this.state.memoryValue === this.state.screenValue ||
-      this.state.operationValue === "="
+      this.state.memoryValue === this.state.screenValue
     ) {
       this.setScreenValue(value);
+    } else if (this.state.operationValue === "=") {
+      this.setScreenValue(value);
+      this.setState({
+        operationValue: ""
+      });
     } else {
       const newValue = this.state.screenValue + value;
       this.setScreenValue(newValue);
